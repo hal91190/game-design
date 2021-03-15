@@ -1,0 +1,208 @@
+%\documentclass{article}
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+%\usepackage[T1]{fontenc}
+%\pagestyle{headings}
+\usepackage{amssymb,amsmath,amsfonts, amsthm}    %ams
+%\usepackage{a4wide}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{multido}
+\usepackage{verbatim}
+\usepackage[small,hang]{caption}
+\usepackage{enumerate}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usepackage{nomencl}
+\usepackage{hyperref}
+
+\usepackage{geometry}
+\geometry{margin=2cm}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\nobibliography*
+\bibliographystyle{plain} 
+
+%\makenomenclature
+%compilation for nomenclature
+%iere fois makeindex hﬁlenamei.nlo -s nomencl.ist -o hﬁlenamei.nls
+
+
+\newcommand{\R}{{\mathbb R}}   % reals
+\newcommand{\Q}{{\mathbb Q}}   % rationals
+\newcommand{\N}{{\mathbb N}}   %natural numbers
+\newcommand{\Z}{{\mathbb Z}}    %integers
+\renewcommand{\P}{{\mathbb P}}   %primes
+\newcommand{\F}{{\mathbb F}}
+\newcommand{\Proba}{{\mathbb P}}
+
+\newcommand\cc{{\cal C}}
+\newcommand{\cw}{{\cal W}}
+
+\newcommand{\M}{\text{\sc max}}
+\newcommand{\Vs}{V_\text{\sc sink}}
+\newcommand{\m}{\text{\sc min}}
+\newcommand{\tm}{\text{\sc min}}
+\newcommand{\ran}{\text{\sc ran}}
+
+\newcommand{\VM}{V_\text{\sc max}}
+\newcommand{\Vm}{V_\text{\sc min}}
+\newcommand{\Vr}{V_\text{\sc ran}}
+
+\renewcommand{\captionfont}{\it \small}
+
+\renewcommand{\captionlabelfont}{\it \bf \small}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{example}{Example}
+\newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{definition}{Definition}[theorem]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{remark}{Remark}[theorem]
+
+
+%\newcommand{\proof}{\noindent {\bf Proof.\ \ }}
+
+%\newcommand{\qed}{\hfill $\square$}
+
+
+\newcommand{\card}[1]{\vert #1 \vert}
+
+\newenvironment{disarray}%
+ {\everymath{\displaystyle\everymath{}}\array}%
+  {\endarray}
+
+%\renewcommand{\thefootnote}{\Alph{footnote}}
+
+\newcommand{\pro}[1]{{\mathbb P}\left(#1\right)}
+\newcommand{\pros}[3]{{\mathbb P}^{#1}_{#2}\left(#3\right)}
+\newcommand{\esp}[1]{{\mathbb E}\left(#1\right)}
+\newcommand{\esps}[3]{{\mathbb E}^{#1}_{#2}\left(#3\right)}
+\newcommand{\val}{\mbox{Val}}
+
+
+
+
+\title{Board Game Design\\
+Notes bibliographiques}
+\author{}
+
+\begin{document}
+\maketitle 
+
+\tableofcontents
+
+\section{Glossaire}
+
+\begin{itemize}
+\item \emph{GDL : Game Description Language}
+\end{itemize}
+
+\section{Notes}
+
+\subsection{Zillions of games (1998)} 
+C'est un logiciel commercial
+qui comprend un GDL nommé "Zillions Rule Language" ou ZRF \cite{lefler2004zillions}  d'assez haut niveau permettant de décrire essentiellement les jeux de stratégie à deux joueurs à info parfaite se jouant sur une grille : echecs dames go etc. Le programme permet de tester directement ces jeux contre une IA.
+Il est utilisé dans \cite{hom2007automatic} pour générer de nouveaux jeux équilibrés, par algo génétiques. Quelques liens :
+
+\url{https://www2.cs.duke.edu/courses/spring06/cps108/Assignments/06_vooga/zrf.pdf}
+
+\url{http://www.zillions-of-games.com/}
+
+\url{https://en.wikipedia.org/wiki/Zillions_of_Games}
+
+
+
+\subsection{Automatic design of balanced board games (2007) \cite{hom2007automatic}}
+
+En se basant sur le GDL ZRF de Zillions of games, sont explorés 5600 jeux possibles avec le changement de quelques paramètres et mécaniques, via des algos genetiques dans le but de trouver des jeux équilibrés. L'AI de ZOG joue contre l'IA intégrée du logiciel et le fait que les jeux soient équilibrés est simplement mesuré par rapport aux nombres de matchs gagnés par chacun des joueurs. 5 jeux sont produits qui sont du type abstrait, alignements ou Nim.
+
+
+
+\subsection{Stanford GDL (2006, 2010, 2017) \cite{love2006general, thielscher2010general, thielscher2017gdl} } 
+C' est un GDL ayant eu trois versions successives
+et
+est utilisé notamment pour les compétitions de \emph{General Game Playing}.
+Il s'agit d'un langage logique d'assez bas niveau basé sur datalog (version prolog pour base de données) où tout est exprimé comme un ensemble de faits logiques et d'un ensemble de règles transformatives avec condition d'application.
+
+
+La version I est réservé aux jeux à information complète, la version II comprend les jeux à information partielle et la version III ajoute les jeux \emph{epistémiques} c'est à dire où les règles du jeu font référence directe au fait qu'un joueur connaisse ou ne connaisse pas une information (par exemple un jeu où on doit répondre sans mentir).
+
+
+
+\subsection{Card Game Description Language (2013) \cite {font2013card}} 
+Un GDL est décrit par une grammaire hors-contexte qui permet de générer des nouveaux jeux de cartes (jeu 52 classique) et de les analyser.
+
+
+
+
+
+\subsection{Modular Computational Critics for Games (2013)  \cite{osborn2013modular} } 
+
+Présente un GDL intitulé {\it gamelan} basé sur la lecture de nombreuses règles de jeu. La syntaxe est procedurale et permet plutôt des analyses dynamiques (simulation de parties).
+
+Notion de critiques : des évaluations sur un jeu permettant de repérer des problèmes de design, comme  par exemple  : 
+\begin{itemize}
+\item  des inégalités entre joueurs dans la longueur des tours de jeu 
+\item  le fait que répéter une même action ne devrait pas constituer une bonne stratégie
+\item assurer le fait que le classement relatif des joueurs devrait varier en cours de partie (équilibrage) 
+\item vérifier que toutes les règles du jeu sont utilisées
+\end{itemize}
+
+Les parties sont simulées en utilisant un MCTS.
+
+Le jeu de cartes de deck-building \emph{dominion} est instancié, et des problèmes de design mis à jour.
+
+
+
+
+
+
+\subsection{ Ludi et Ludii (2010,2016) \cite{browne2010evolutionary, browne2016class} }
+
+Ce sont des GDL créés spécialement pour le game design.
+Dans {\it Evolutionary Game Design} \cite{browne2010evolutionary} la première version du GDL Ludi est présentée. Il s'agit d'un GDL d'assez haut niveau qui me semble assez inspiré du ZRF (Zillions) et décrit le même genre de jeux (jeux abstraits, alignement de pions etc).
+
+La notion de {\it ludème} est utilisée : unité élémentaire de jeu, règle, mécanique, composant qui peut se retrouver d'un jeu à l'autre. Le GDL est fourni est censé représenter directement ces ludèmes ; en pratique ça veut juste dire que le GDL est de haut-niveau que diverses notions sont pré-implémentées. Cette notion est justifiée par le fait qu'un designer humain penserait le jeu en terme de ludèmes.
+
+Le langage est implémenté au sein d'un écosystème logiciel permettant de parser les descriptions de jeu, d'en avoir une représentation graphique, ainsi qu'une analyse sous forme de conseillers (advisors) qui évaluent les positions de jeu, et d'en déduire des stratégies pour simuler le jeu.
+S'en suit une analyse sur différents paramètres du jeu (profondeur, drama, ...) liés à l'équilibrage ou l'esthétique du jeu. Les définitions précises de ces paramètres sont données dans le papier.
+
+Finalement des jeux sont engendrés, notés par ces critères et évolués par algorithme génétique et deux jeux sont proposés. Un d'eux a été commercialisé (aligner 4 pions mais pas trois : Yavalath \url{https://boardgamegeek.com/boardgame/33767/yavalath}).
+
+La thèse de Browne \cite{browne2008thesis}  contient également un descriptif de ces travaux et des perspectives historiques. 
+
+
+Le deuxième article \cite{browne2016class} présente une évolution du langage en {\bf Ludii}, qui formalise maintenant les jeux à l'aide d'une grammaire hors contexte générant des ludèmes (c'était déjà implicitement le cas à mon avis ?). Le langage devient plus général avec des états/actions. Commence par un historique des divers GDL et compare Ludii avec ces GDL sur plusieurs échelles. 
+
+L'article \cite{piette2019ludii} présente plus généralement Ludii  et l'approche "ludémique" ainsi que quelques expérimentations dont la vitesse de simulation de différents jeux (type classique)
+dans Stanford GDL, RGB et Ludii  en version "compilées" et interprétées. Ici compilé signifie transformer le jeu en un circuit booléen (de ce que je comprends) qui calcule les résultats des actions. Il est également prouvé que Ludii est permet de modéliser tout jeu fini déterministe à information parfaite (présentés sous forme d'un arbre).
+Voir aussi \cite{piette2021ludii} pour une description détaillée du langage.
+
+Ces nouveaux travaux sur Ludii s'inscrivent dans le cadre du "Digital Ludeme Project" (2018-2023) \url{http://www.ludeme.eu/} (Maastricht University) qui entend modéliser 1000 jeux traditionnels les plus classiques dans une base de données commune. La page présente l'ensemble des publis liées au projet, assez nombreuses.
+
+
+
+\subsection{AI-based playtesting of contemporary board games (2017) \cite{demesentier2017aibased}}
+
+
+Simulation du jeu {\it ticket to ride} (aventuriers du rail) avec quatre agents AI ayant des comportements de jeu différents pour tester des maps de jeu et voir à quels agents elles sont les plus adpatées.
+
+
+
+\subsection{Exploring the hearthstone deck space (2018) \cite{bhatt2018exploring} }
+
+En utilisant un simulateur du jeu Hearthstone, évolution 
+decks de HS testés en utilisant différents profils d'AI du simulateur (SabberStone) : aggro, control, etc. Permet aussi de tester l'ajoute de nouvelles cartes.
+
+
+
+\bibliography{biblio.bib}
+
+
+
+\end{document}
