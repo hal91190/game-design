@@ -119,7 +119,7 @@ Il est utilisé dans \cite{hom2007automatic} pour générer de nouveaux jeux éq
 
 \subsection{Automatic design of balanced board games (2007) \cite{hom2007automatic}}
 
-En se basant sur le GDL ZRF de Zillions of games, sont explorés 5600 jeux possibles avec le changement de quelques paramètres et mécaniques, via des algos genetiques dans le but de trouver des jeux équilibrés. L'AI de ZOG joue contre l'IA intégrée du logiciel et le fait que les jeux soient équilibrés est simplement mesuré par rapport aux nombres de matchs gagnés par chacun des joueurs. 5 jeux sont produits qui sont du type abstrait, alignements ou Nim.
+En f se basant sur le GDL ZRF de Zillions of games, sont explorés 5600 jeux possibles avec le changement de quelques paramètres et mécaniques, via des algos genetiques dans le but de trouver des jeux équilibrés. L'AI de ZOG joue contre l'IA intégrée du logiciel et le fait que les jeux soient équilibrés est simplement mesuré par rapport aux nombres de matchs gagnés par chacun des joueurs. 5 jeux sont produits qui sont du type abstrait, alignements ou Nim.
 
 
 
@@ -180,7 +180,7 @@ La thèse de Browne \cite{browne2008thesis}  contient également un descriptif d
 Le deuxième article \cite{browne2016class} présente une évolution du langage en {\bf Ludii}, qui formalise maintenant les jeux à l'aide d'une grammaire hors contexte générant des ludèmes (c'était déjà implicitement le cas à mon avis ?). Le langage devient plus général avec des états/actions. Commence par un historique des divers GDL et compare Ludii avec ces GDL sur plusieurs échelles. 
 
 L'article \cite{piette2019ludii} présente plus généralement Ludii  et l'approche "ludémique" ainsi que quelques expérimentations dont la vitesse de simulation de différents jeux (type classique)
-dans Stanford GDL, RGB et Ludii  en version "compilées" et interprétées. Ici compilé signifie transformer le jeu en un circuit booléen (de ce que je comprends) qui calcule les résultats des actions. Il est également prouvé que Ludii est permet de modéliser tout jeu fini déterministe à information parfaite (présentés sous forme d'un arbre).
+dans Stanford GDL, RBG (Regular BoardGames, voir plus loin) et Ludii  en version "compilées" et interprétées. Ici compilé signifie transformer le jeu en un circuit booléen (de ce que je comprends) qui calcule les résultats des actions. Il est également prouvé que Ludii est permet de modéliser tout jeu fini déterministe à information parfaite (présentés sous forme d'un arbre).
 Voir aussi \cite{piette2021ludii} pour une description détaillée du langage.
 
 Ces nouveaux travaux sur Ludii s'inscrivent dans le cadre du "Digital Ludeme Project" (2018-2023) \url{http://www.ludeme.eu/} (Maastricht University) qui entend modéliser 1000 jeux traditionnels les plus classiques dans une base de données commune. La page présente l'ensemble des publis liées au projet, assez nombreuses.
@@ -199,8 +199,37 @@ Simulation du jeu {\it ticket to ride} (aventuriers du rail) avec quatre agents 
 En utilisant un simulateur du jeu Hearthstone, évolution 
 decks de HS testés en utilisant différents profils d'AI du simulateur (SabberStone) : aggro, control, etc. Permet aussi de tester l'ajoute de nouvelles cartes.
 
+\subsection{Regular Boardgames (2019) \cite{kowalski2019regular}}
 
+Propose un GDL nommé RBG qui permet simultanément la simulation efficace des
+jeux et soit concis (donc de haut niveau). Un jeu se présente comme la donnée
+d'un ensemble de
+\begin{itemize}
+  \item joueurs (ensemble fini)
+  \item un plateau (board) (en gros un graphe orienté avec des
+sommets/positions et des notions d'adjacence)
+  \item des pièces (juste un ensemble fini) qui sont les valeurs que pourront
+    prendre les sommets du plateau 
+  \item des variables (ensemble fini qui prendront des valeurs dans N) pour
+    les scores, ou d'autres valeurs qui interviennent dans le jeu (ils donnent
+    l'exemple des echecs où on a besoin d'une variable pour indiquer si la prise
+    en passant a eu lieu)
+  \item des bornes (valeur max de chaque variable)
+  \item un état initial (voir ci-dessous)
+  \item des règles (idem)
+\end{itemize} 
 
+Dans le jeu un état est la donnée d'un joueur dont c'est le tour (sachant qu'il
+y a aussi un joueur pour le hasard ou les actions d'un arbitre), une fonction
+qui associe à chaque sommet du plateau une pièce (sachant qu'il y a une pièce
+pour représenter que l'emplacement est vide) , une valeur pour chaque variable, 
+et d'autres trucs comme le rule index où j'ai rien compris.
+
+Le nom regular board games vient du fait que les règles (qui décrivent les
+actions pouvant s'appliquer) sont décrites par des conditions du type expression
+rationnelles.
+
+Si qqn veut le lire en détails et comprendre c'est cool.
 \bibliography{biblio.bib}
 
 
