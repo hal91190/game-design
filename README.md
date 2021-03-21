@@ -1,7 +1,8 @@
 # Game Design
 
-## Beyond The Box
-* [Articles sur le game design](https://beyondthebox.fr/articles/)
+## Articles
+* [Articles sur le game design](https://beyondthebox.fr/articles/) chez "Beyond the Box"
+* Une équipe de google teste un jeu de cartes type magic par IA pour équilibrer https://ai.googleblog.com/2021/03/leveraging-machine-learning-for-game.html
 
 ## YouTube
 * [Game Developers Conference](https://www.youtube.com/c/Gdconf/featured)
@@ -11,3 +12,5 @@
 
 ## Librairie
 * [boardgame.io](https://github.com/boardgameio/boardgame.io) moteur pour créer des jeux tour par tour en JavaScript (à voir si c'est pertinent)
+
+
