@@ -1,0 +1,118 @@
+GAME Les Aventuriers du Rail Junior has BOARD adrj, DECK wagon, DECK ticket
+
+LIST_OF cities is Dublin, Brest, ..., Ankara
+LIST_OF colors is yellow, green, white, black, blue, red
+
+adrj is graph # graph est une classe prédéfinie avec tout qui va bien
+	with VERTEX city, EDGE link
+
+city has name, l_border, r_border # 22 Villes
+	is 	Dublin, true, false
+		Brest, true, false
+		Madrid, false, false
+		London, false, false
+		...
+		Ankara, false, true
+link has A, B, couleur, nb, occupied, SLOT # Environ 60 edges
+	is 	Dublin, London, green 1, false, empty
+		Dublin, London, yellow 1, false, empty
+		Dublin, Brest, blue 2, false, empty
+		...
+		Rostov, Ankara, black 3, false, empty
+
+wagon has CARD cardw
+cardw has color
+	is 	12 yellow
+		12 green
+		12 white
+		12 black
+		12 blue
+		12 red
+		4 all
+
+ticket has CARD cardt# 32 cartes trajet
+cardt has A, B
+	is 	1 Berlin, Athène
+		1 Berlin, Brest
+		...
+
+PLAYER has
+	NAME,
+	HAND of wagon w,
+	HAND of ticket t,
+	TOKEN long_trip, nb_trip, nb_wagon
+	TOKEN les_wagons
+
+INIT is 
+	wagon.DRAW <- all cardw
+	wagon.DISCARD-REDRAW <- empty
+	wagon suffle
+	ticket.DRAW <- all cardt
+	ticket suffle
+	PLAYER.w <- 4 top of wagon.DRAW
+	PLAYER.t <- 2 top of ticket.DRAW
+	PLAYER.long_trip <- empty
+	PLAYER.nb_trip <- 20
+
+RULE is
+	R_draw(p): p.w <- 2 top of wagon.draw
+	R_redrawt(p): 	p.t -> ticket.DISCARD-REDRAW
+					p.t <- 2 top of ticket.DRAW
+	R_setwagon(p):	CHOOSE A,B in cities, C in colors with (A/=B AND (A,B,C,false,k,empty) in adrj.link 
+																  AND  k<=count(p.les_wagons))
+					h p.les_wagons -> (A,B,C,false,full)
+					
+					CHOOSE lien in adrj.link with  lien.occupied
+						   sw SUBSET OF  p.les_wagons
+						   sc SUBSET OF  p.w
+					WITH lien.occupied == empty AND lien.nb == count(sw)
+					       AND count(sc) == count(lien.wagon_place_set)
+					       AND (ALL) sc.couleur==lien.couleur
+					       
+					THEN  MOVE count(lien.wagon_place_set) OF p.les_wagons  TO lien.wagon_place_set
+					sc -> wagon.DISCARD-REDRAW
+					      sw -> lien.wagon_place_set
+					      lien.occupied = p
+PLAYER p TURN is
+	CHOOSE r in RULE
+	r(p)
+
+Action A1
+
+Action Q
+   CNDITION : if not A1_en_cours
+	
+choose W SUBSET of wagons:
+	for each w in W
+			do(w...)
+
+
+do(W)
+
+
+MECANISME : SUBSET W of wagons action do(...)
+
+Action A1
+   A1_en_cours = True
+   
+toutes les autres action sauf A2 et A3
+	condition : if not A1_en_cours
+
+A2
+	condition : A1_en_cours
+	var : w un wagon
+	do(w, ...)
+
+A3:
+    A1_en_cours FALSE
+	
+
+
+
+f = F(f)
+
+def F
+
+
+
+
