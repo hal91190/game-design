@@ -14,6 +14,7 @@
 * [boardgame.io](https://github.com/boardgameio/boardgame.io) moteur pour créer des jeux tour par tour en JavaScript (à voir si c'est pertinent)
 * [Board Game Arena](https://boardgamearena.com/welcome) est une plateforme web permettant de jouer à des jeux de société. L'ensemble des règles du jeu peut y être implémenté.
   * [Board Game Arena Studio](https://en.doc.boardgamearena.com/Studio) permet d'implémenter le jeu ([guidelines](https://en.doc.boardgamearena.com/BGA_Studio_Guidelines)). Les langages utilisés sont PHP, SQL, HTML/CSS et Javascript ([framework Dojo](https://dojo.io/)).
+  * des transparents qui décrivent l'interface (https://fr.slideshare.net/boardgamearena/bga-studio-focus-on-bga-game-state-machine)
 * [Tabletopia](https://tabletopia.com/) est un moteur 3D pour implémenter des jeux. Il permet de reproduire le matériel du jeu et de le manipuler.
   * [Documentation sur la création de jeux](https://help.tabletopia.com/knowledge-base/how-to-make-your-game-prototype-on-tabletopia/).
 * [Tabletop Simulator](https://www.tabletopsimulator.com/) est un moteur 3D pour implémenter des jeux. Il permet de reproduire le matériel du jeu et de le manipuler. Les règles du jeu ne sont pas implémentée. Seuls quelques scripts permettent de simplifier les actions de base du jeu (mise en place, …).
