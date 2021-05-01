@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards   #-}
 
-module Main (main) where
+module Parser where
 
 import Control.Monad (void)
 import Data.Text (Text)
 import Data.Void (Void)
 import Text.Megaparsec
-    ( (<?>), parseTest, between, choice, many, try, Parsec )
+    ( (<?>), between, choice, some, many, try, Parsec )
 import Text.Megaparsec.Char ( alphaNumChar, letterChar, space1 )
 import qualified Control.Monad.Combinators.Expr as CE
 import qualified Data.Text as T
@@ -44,13 +44,13 @@ pVariable :: Parser Expr
 pVariable = Var <$> identifier
 
 pInteger :: Parser Expr
-pInteger = Int <$> lexeme L.decimal
+pInteger = Integer <$> lexeme L.decimal
 
 parens :: Parser a -> Parser a
 parens = between (symbol "(") (symbol ")")
 
 pTerm :: Parser Expr
-pTerm = choice [pIf, pLet, parens pExpr, pVariable, pInteger]
+pTerm = choice [pIf, pLet, pLambda, parens pExpr, pVariable, pInteger]
 
 pIf :: Parser Expr
 pIf = do
@@ -70,8 +70,22 @@ pLet = do
   void $ symbol "in"
   Let [(var, expr1)] <$> pExpr
 
+pLambda :: Parser Expr
+pLambda = do
+  void $ symbol "\\"
+  vars <- many identifier
+  void $ symbol "->"
+  Lambda vars <$> pExpr
+
+pTerm2 :: Parser Expr 
+pTerm2 = do
+  x <- some pTerm
+  case x of
+    [l] -> pure l
+    y : ys -> pure $ Apply y ys 
+
 pExpr :: Parser Expr
-pExpr = CE.makeExprParser pTerm operatorTable
+pExpr = CE.makeExprParser pTerm2 operatorTable
 
 operatorTable :: [[CE.Operator Parser Expr]]
 operatorTable =
@@ -93,6 +107,3 @@ binary  name f = CE.InfixL  (f <$ symbol name)
 
 prefix :: Text -> (Expr -> Expr) -> CE.Operator Parser Expr
 prefix  name f = CE.Prefix  (f <$ symbol name)
-
-main :: IO ()
-main = parseTest pExpr "let x = 3 + 4 in if x == 0\n then x * x else y"

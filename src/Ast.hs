@@ -5,11 +5,12 @@ data Operator = Plus | Minus | Times | Divides | Modulo | Equals | NotEqual
 
 data Expr
     = Var String
-    | Int Int
+    | Integer Int
     | True
     | False
     | Negation Expr
     | Operation Operator Expr Expr
+    | Lambda [String] Expr
     | Apply Expr [Expr]
     | Let [(String, Expr)] Expr
     | If Expr Expr Expr
