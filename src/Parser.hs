@@ -4,7 +4,7 @@
 module Parser where
 
 import Control.Monad (void)
-import Data.Text (Text)
+import Data.Text (Text, unpack)
 import Data.Void (Void)
 import Text.Megaparsec( (<?>), between, choice, many, some, sepBy, try, Parsec )
 import Text.Megaparsec.Char ( alphaNumChar, letterChar, space1 )
@@ -12,7 +12,7 @@ import qualified Control.Monad.Combinators.Expr as CE
 import qualified Data.Text as T
 import qualified Text.Megaparsec.Char.Lexer as L
 
-import Ast (Expr(..), Operator(..))
+import Ast (Expr(..))
 
 type Parser = Parsec Void Text
 
@@ -63,7 +63,7 @@ pIf = do
 pLet :: Parser Expr
 pLet = do
   void $ symbol "let"
-  var <- identifier
+  var <- identifier 
   void $ symbol "="
   expr1 <- pExpr
   void $ symbol "in"
@@ -90,21 +90,23 @@ pExpr = CE.makeExprParser pTermList operatorTable
 
 operatorTable :: [[CE.Operator Parser Expr]]
 operatorTable =
-  [ [ prefix "-" Negation
+  [ --[ prefix "-" Negation
+     -- ]
+    [ binary "*"
+    , binary "/"
     ]
-  , [ binary "*" (Operation Times)
-    , binary "/" (Operation Divides)
+  , [ binary "+"
+    , binary "-"
     ]
-  , [ binary "+" (Operation Plus)
-    , binary "-" (Operation Minus)
-    ]
-  , [ binary "==" (Operation Equals)
-    , binary "/=" (Operation NotEqual)
+  , [ binary "=="
+    , binary "/="
     ]
   ]
 
-binary :: Text -> (Expr -> Expr -> Expr) -> CE.Operator Parser Expr
-binary  name f = CE.InfixL  (f <$ symbol name)
+binary :: Text  -> CE.Operator Parser Expr
+binary  name = CE.InfixL (f <$ symbol name)
+  where
+    f x y = Apply (Var $ unpack name) [x, y]
 
 prefix :: Text -> (Expr -> Expr) -> CE.Operator Parser Expr
 prefix  name f = CE.Prefix  (f <$ symbol name)

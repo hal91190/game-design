@@ -1,16 +1,18 @@
 module Ast where
 
-data Operator = Plus | Minus | Times | Divides | Modulo | Equals | NotEqual
-    deriving (Eq, Show)
-
 data Expr
     = Var String
     | Integer Int
+    | MTrue | MFalse
     | List [Expr]
-    | Negation Expr
-    | Operation Operator Expr Expr
+    | Primitive ([Expr] -> Either String Expr)
     | Lambda [String] Expr
     | Apply Expr [Expr]
     | Let [(String, Expr)] Expr
     | If Expr Expr Expr
-    deriving (Eq, Show)
+
+instance Show Expr where
+    show (Integer x) = show x
+    show (List l) = show l
+    show MTrue = "true"
+    show MFalse = "false"
