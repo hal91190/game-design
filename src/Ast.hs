@@ -6,8 +6,7 @@ data Operator = Plus | Minus | Times | Divides | Modulo | Equals | NotEqual
 data Expr
     = Var String
     | Integer Int
-    | True
-    | False
+    | List [Expr]
     | Negation Expr
     | Operation Operator Expr Expr
     | Lambda [String] Expr

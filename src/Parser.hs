@@ -1,13 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RecordWildCards   #-}
+{-# LANGUAGE LambdaCase   #-}
 
 module Parser where
 
 import Control.Monad (void)
 import Data.Text (Text)
 import Data.Void (Void)
-import Text.Megaparsec
-    ( (<?>), between, choice, some, many, try, Parsec )
+import Text.Megaparsec( (<?>), between, choice, many, some, sepBy, try, Parsec )
 import Text.Megaparsec.Char ( alphaNumChar, letterChar, space1 )
 import qualified Control.Monad.Combinators.Expr as CE
 import qualified Data.Text as T
@@ -40,6 +39,9 @@ identifier = (lexeme . try) (p >>= check)
               then fail $ "keyword " ++ show x ++ " cannot be a variable name"
               else pure x
 
+pTerm :: Parser Expr
+pTerm = choice [pIf, pLet, pLambda, parens pExpr, pList, pVariable, pInteger]
+
 pVariable :: Parser Expr
 pVariable = Var <$> identifier
 
@@ -48,9 +50,6 @@ pInteger = Integer <$> lexeme L.decimal
 
 parens :: Parser a -> Parser a
 parens = between (symbol "(") (symbol ")")
-
-pTerm :: Parser Expr
-pTerm = choice [pIf, pLet, pLambda, parens pExpr, pVariable, pInteger]
 
 pIf :: Parser Expr
 pIf = do
@@ -77,15 +76,17 @@ pLambda = do
   void $ symbol "->"
   Lambda vars <$> pExpr
 
-pTerm2 :: Parser Expr 
-pTerm2 = do
-  x <- some pTerm
-  case x of
+pList :: Parser Expr 
+pList = List <$> between (symbol "[") (symbol "]") (pExpr `sepBy` symbol ",")
+
+pTermList :: Parser Expr 
+pTermList = do
+  some pTerm >>= \case
     [l] -> pure l
-    y : ys -> pure $ Apply y ys 
+    y : ys -> pure $ Apply y ys
 
 pExpr :: Parser Expr
-pExpr = CE.makeExprParser pTerm2 operatorTable
+pExpr = CE.makeExprParser pTermList operatorTable
 
 operatorTable :: [[CE.Operator Parser Expr]]
 operatorTable =
