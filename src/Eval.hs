@@ -26,6 +26,11 @@ tailImpl [List _] = Left "Empty list has no head"
 tailImpl [_] = Left "Wrong argument"
 tailImpl _ = Left "Invalid number of arguments"
 
+emptyImpl :: [Expr] -> ThrowsError Expr
+emptyImpl [List []] = Right MTrue
+emptyImpl [_] = Right MFalse
+emptyImpl _ = Left "Invalid number of arguments"
+
 intBinaryOp :: (Int -> Int -> Int) -> [Expr] -> ThrowsError Expr
 intBinaryOp op [Integer x, Integer y] = Right $ Integer (op x y)
 intBinaryOp op [_, _] = Left "One argument is not an intger"
@@ -40,10 +45,11 @@ primitives = [ ("+", Primitive $ intBinaryOp (+))
              , ("-", Primitive $ intBinaryOp (-))
              , ("*", Primitive $ intBinaryOp (*))
              , ("/", Primitive $ intBinaryOp div)
-             , ("==", Primitive $ equalsImpl)
-             , ("cons", Primitive $ consImpl)
-             , ("head", Primitive $ headImpl)
-             , ("tail", Primitive $ tailImpl)
+             , ("==", Primitive equalsImpl)
+             , ("cons", Primitive consImpl)
+             , ("head", Primitive headImpl)
+             , ("tail", Primitive tailImpl)
+             , ("empty", Primitive emptyImpl)
             ]
 
 isTrue :: Expr -> Bool
@@ -56,7 +62,7 @@ eval env (List l) = List <$> mapM (eval env) l
 eval env (Var a) =
     case Map.lookup a env <|> lookup a primitives of
         Just e -> Right e
-        Nothing -> Left "meuh"
+        Nothing -> Left $ a ++ " is not defined"
 eval env (Apply fn args) = do
     fn' <- eval env fn
     args' <- mapM (eval env) args

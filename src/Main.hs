@@ -1,15 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main where
-import Text.Megaparsec (parseMaybe) 
+import Data.Text.IO as IO
+import Text.Megaparsec (parse) 
 import qualified Data.Map as Map
-import Parser (pExpr)
+import Parser (pExpr, pFile)
 import Eval (eval)
 
 main :: IO ()
 main = do
-  let expr = "let fact = \\n -> if n == 0 then 1 else n * fact (n-1) in fact 6"
-  let Just p = parseMaybe pExpr expr
-  let p2 = eval Map.empty p
-  print expr
-  print p2
+    code <- IO.readFile "./test.mc"
+    let Right env = parse pFile "./test.mc" code
+    let exprText = "map (\\x -> x * x) [1, 2, 3]"
+    let Right expr = parse pExpr "expr" exprText
+    print $ eval (Map.fromList env) expr
+    --let p2 = eval Map.empty p
+    --print expr
+    --print p2
