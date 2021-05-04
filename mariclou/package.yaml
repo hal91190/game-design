@@ -1,0 +1,62 @@
+name: mariclou
+version: 0.0.1.0
+github: ""
+license: MIT
+author: "Guillaume Bagan"
+maintainer: "guillaume.bagan@liris.cnrs.fr"
+copyright: ""
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+description: Mariclou
+
+dependencies:
+  - base >= 4.7 && < 5
+
+  # Types
+  - text
+  - containers
+
+  # Parsing
+  - megaparsec
+  - parser-combinators
+
+  # Other dependencies
+  - mtl
+
+default-extensions:
+  # Syntactic extensions
+  - LambdaCase
+  - TupleSections
+
+  # Overloading
+  - OverloadedStrings
+
+ghc-options:
+  - -Wall
+
+library:
+  source-dirs: src
+
+executables:
+  mariclou:
+    main: Main.hs
+    source-dirs: src
+    ghc-options:
+      - -threaded
+      - -rtsopts
+    dependencies:
+      - mariclou
+
+tests:
+  pion-test:
+    main: Spec.hs
+    source-dirs: test/src
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - mariclou
