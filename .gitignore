@@ -1,5 +1,6 @@
 *.o
 *.hi
+mariclou/dist-newstyle
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
