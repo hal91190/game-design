@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-=======
 *.o
 *.hi
 
->>>>>>> parent of 7ddb2cc... mariclou: crée un projet cabal
+*.stack-work
+*dist-newstyle
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

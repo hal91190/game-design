@@ -20,6 +20,5 @@ instance Show Expr where
     show (Apply f args) = "(" ++ show f ++ " " ++ show args ++ ")"
     show (Lambda args e) = "\\" ++ show args ++ "->" ++ show e
     show (If e1 e2 e3) = "if " ++ show e1 ++ " then " ++ show e2 ++ " else " ++ show e3
-
-data Statement = Statement String [String] Expr
-    deriving (Show)
+    show (Let vars expr) = "let " ++ show vars ++ " in " ++ show expr
+    show (Primitive _) = "#primitive" 

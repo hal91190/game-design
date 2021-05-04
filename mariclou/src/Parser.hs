@@ -10,10 +10,9 @@ import Data.Void (Void)
 import Text.Megaparsec( (<?>), between, choice, many, some, sepBy, try, Parsec )
 import Text.Megaparsec.Char ( alphaNumChar, letterChar, space1 )
 import qualified Control.Monad.Combinators.Expr as CE
-import qualified Data.Text as T
 import qualified Text.Megaparsec.Char.Lexer as L
 
-import Ast (Expr(..), Statement(..))
+import Ast (Expr(..))
 
 type Parser = Parsec Void Text
 
@@ -77,7 +76,7 @@ pLambda = do
     void $ symbol "->"
     Lambda vars <$> pExpr
 
-pList :: Parser Expr 
+pList :: Parser Expr
 pList = List <$> between (symbol "[") (symbol "]") (pExpr `sepBy` symbol ",")
 
 pTermList :: Parser Expr 
@@ -85,6 +84,7 @@ pTermList =
     some pTerm >>= \case
         [l] -> pure l
         y : ys -> pure $ Apply y ys
+        _ -> fail "impossible has happened"
 
 pExpr :: Parser Expr
 pExpr = CE.makeExprParser pTermList operatorTable

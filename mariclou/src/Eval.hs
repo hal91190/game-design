@@ -1,7 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 module Eval where
 import Control.Applicative ((<|>))
-import Control.Monad.Except
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Ast
@@ -15,13 +14,13 @@ consImpl [_, _] = Left "Second argument of cons is not a list"
 consImpl _ = Left "Invalid number of arguments"
 
 headImpl :: [Expr] -> ThrowsError Expr
-headImpl [List (x : xs)] = Right x
+headImpl [List (x : _)] = Right x
 headImpl [List _] = Left "Empty list has no head"
 headImpl [_] = Left "Wrong argument"
 headImpl _ = Left "Invalid number of arguments"
 
 tailImpl :: [Expr] -> ThrowsError Expr
-tailImpl [List (x : xs)] = Right (List xs)
+tailImpl [List (_ : xs)] = Right (List xs)
 tailImpl [List _] = Left "Empty list has no head"
 tailImpl [_] = Left "Wrong argument"
 tailImpl _ = Left "Invalid number of arguments"
@@ -33,12 +32,13 @@ emptyImpl _ = Left "Invalid number of arguments"
 
 intBinaryOp :: (Int -> Int -> Int) -> [Expr] -> ThrowsError Expr
 intBinaryOp op [Integer x, Integer y] = Right $ Integer (op x y)
-intBinaryOp op [_, _] = Left "One argument is not an intger"
-intBinaryOp op _ = Left "Invalid number of arguments"
+intBinaryOp _ [_, _] = Left "One argument is not an intger"
+intBinaryOp _ _ = Left "Invalid number of arguments"
 
 equalsImpl :: [Expr] -> ThrowsError Expr
 equalsImpl [Integer x, Integer y] = Right $ if x == y then MTrue else MFalse
 equalsImpl [_, _] = Left "One argument is not an intger"
+equalsImpl _ = Left "Invalid number of arguments"
 
 primitives :: [(String, Expr)]
 primitives = [ ("+", Primitive $ intBinaryOp (+))
@@ -71,6 +71,7 @@ eval env (Apply fn args) = do
         Lambda names expr ->
             let env' = Map.union (Map.fromList (zip names args')) env in
             eval env' expr
+        _ -> Left $ show fn' <> " is not a function"
 eval env (If expr1 expr2 expr3) = do
     expr1' <- eval env expr1
     if isTrue expr1' then
@@ -79,7 +80,7 @@ eval env (If expr1 expr2 expr3) = do
         eval env expr3
 eval env (Let vars expr) = do
     let env' = Map.union (Map.fromList vars) env 
-    vars' <- mapM (\(var, val) -> (var,) <$> eval env val) vars
+    vars' <- mapM (\(var, val) -> (var,) <$> eval env' val) vars
     let env'' = Map.union (Map.fromList vars') env 
     eval env'' expr
-eval env x = Right x
+eval _ x = Right x
