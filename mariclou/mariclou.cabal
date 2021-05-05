@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5985a09dccb5cd71069852fe24a0c26afce97a551b81580edba590174741d12e
+-- hash: 4b669a87c32621ab023364c1d8e9d027e8b23e8a343895f1c7a566ab027dda38
 
 name:           mariclou
 version:        0.0.1.0
@@ -32,14 +32,15 @@ library
       Paths_mariclou
   hs-source-dirs:
       src
-  default-extensions: LambdaCase TupleSections OverloadedStrings
-  ghc-options: -Wall
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock
   build-depends:
       base >=4.7 && <5
     , containers
     , megaparsec
     , mtl
     , parser-combinators
+    , relude
     , text
   default-language: Haskell2010
 
@@ -52,8 +53,8 @@ executable mariclou
       Paths_mariclou
   hs-source-dirs:
       src
-  default-extensions: LambdaCase TupleSections OverloadedStrings
-  ghc-options: -Wall -threaded -rtsopts
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock -threaded -rtsopts
   build-depends:
       base >=4.7 && <5
     , containers
@@ -61,18 +62,19 @@ executable mariclou
     , megaparsec
     , mtl
     , parser-combinators
+    , relude
     , text
   default-language: Haskell2010
 
-test-suite pion-test
+test-suite mariclou-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
       Paths_mariclou
   hs-source-dirs:
       test/src
-  default-extensions: LambdaCase TupleSections OverloadedStrings
-  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
     , containers
@@ -80,5 +82,6 @@ test-suite pion-test
     , megaparsec
     , mtl
     , parser-combinators
+    , relude
     , text
   default-language: Haskell2010

@@ -1,4 +1,8 @@
+{-# LANGUAGE NoImplicitPrelude #-}
 module Ast where
+
+import Relude
+import qualified Text.Show
 
 data Expr
     = Var String
@@ -21,4 +25,4 @@ instance Show Expr where
     show (Lambda args e) = "\\" ++ show args ++ "->" ++ show e
     show (If e1 e2 e3) = "if " ++ show e1 ++ " then " ++ show e2 ++ " else " ++ show e3
     show (Let vars expr) = "let " ++ show vars ++ " in " ++ show expr
-    show (Primitive _) = "#primitive" 
+    show (Primitive _) = "#primitive"

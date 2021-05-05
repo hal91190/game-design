@@ -1,7 +1,15 @@
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE LambdaCase   #-}
 {-# LANGUAGE TupleSections #-}
+
 module Eval where
-import Control.Applicative ((<|>))
-import Data.Map (Map)
+
+{-
+>>> 3+3
+-}
+
+import Relude
 import qualified Data.Map as Map
 import Ast
 
@@ -40,8 +48,9 @@ equalsImpl [Integer x, Integer y] = Right $ if x == y then MTrue else MFalse
 equalsImpl [_, _] = Left "One argument is not an intger"
 equalsImpl _ = Left "Invalid number of arguments"
 
-primitives :: [(String, Expr)]
-primitives = [ ("+", Primitive $ intBinaryOp (+))
+primitives :: Map String Expr
+primitives = Map.fromList
+             [ ("+", Primitive $ intBinaryOp (+))
              , ("-", Primitive $ intBinaryOp (-))
              , ("*", Primitive $ intBinaryOp (*))
              , ("/", Primitive $ intBinaryOp div)
@@ -60,7 +69,7 @@ isTrue _ = True
 eval :: Env -> Expr -> ThrowsError Expr
 eval env (List l) = List <$> mapM (eval env) l
 eval env (Var a) =
-    case Map.lookup a env <|> lookup a primitives of
+    case Map.lookup a env <|> Map.lookup a primitives of
         Just e -> Right e
         Nothing -> Left $ a ++ " is not defined"
 eval env (Apply fn args) = do

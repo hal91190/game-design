@@ -1,12 +1,12 @@
+{-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE LambdaCase   #-}
 {-# LANGUAGE TupleSections #-}
 
 module Parser where
 
-import Control.Monad (void)
-import Data.Text (Text, unpack)
-import Data.Void (Void)
+import Relude hiding (many, some)
+import Data.Text (unpack)
 import Text.Megaparsec( (<?>), between, choice, many, some, sepBy, try, Parsec )
 import Text.Megaparsec.Char ( alphaNumChar, letterChar, space1 )
 import qualified Control.Monad.Combinators.Expr as CE

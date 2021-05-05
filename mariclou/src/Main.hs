@@ -1,6 +1,13 @@
+{-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE LambdaCase   #-}
+{-# LANGUAGE TupleSections #-}
 
+{- |
+>>> 2+2
+-}
 module Main where
+import Relude
 import Data.Text.IO as IO
 import Text.Megaparsec (parse) 
 import qualified Data.Map as Map

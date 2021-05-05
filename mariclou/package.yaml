@@ -14,6 +14,7 @@ description: Mariclou
 
 dependencies:
   - base >= 4.7 && < 5
+  - relude
 
   # Types
   - text
@@ -27,6 +28,8 @@ dependencies:
   - mtl
 
 default-extensions:
+  - NoImplicitPrelude
+
   # Syntactic extensions
   - LambdaCase
   - TupleSections
@@ -36,6 +39,7 @@ default-extensions:
 
 ghc-options:
   - -Wall
+  - -haddock
 
 library:
   source-dirs: src
@@ -51,7 +55,7 @@ executables:
       - mariclou
 
 tests:
-  pion-test:
+  mariclou-test:
     main: Spec.hs
     source-dirs: test/src
     ghc-options:
