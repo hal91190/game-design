@@ -25,3 +25,4 @@
 * [XMage](http://xmage.de/) permet de jouer à Magic contre un joueur humain ou une IA et implémente la quasi-totalité des règles des différentes cartes.
   * [Code source](https://github.com/magefree/mage)
   * Les [Text-changing effect](https://mtg.fandom.com/wiki/Text-changing_effect) semblent difficiles à implémenter.
+* Le projet [Race for the Galaxy](https://github.com/bnordli/rftg) propose une IA et une interface graphique pour jouer au jeu du même nom. Les cartes avec leurs caractéristiques et leurs pouvoirs sont décrites dans un fichier texte. Des sortes de mots-clé représentent les différents pouvoirs des cartes.
