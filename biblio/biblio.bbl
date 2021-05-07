@@ -1,0 +1,101 @@
+\begin{thebibliography}{10}
+
+\bibitem{bhatt2018exploring}
+Aditya Bhatt, Scott Lee, Fernando de~Mesentier~Silva, Connor~W Watson, Julian
+  Togelius, and Amy~K Hoover.
+\newblock Exploring the hearthstone deck space.
+\newblock In {\em Proceedings of the 13th International Conference on the
+  Foundations of Digital Games}, page~18. ACM, 2018.
+
+\bibitem{browne2008thesis}
+Cameron Browne.
+\newblock Automatic generation and evaluation of recombination games, 2008.
+
+\bibitem{browne2016class}
+Cameron Browne.
+\newblock A class grammar for general games.
+\newblock In {\em International Conference on Computers and Games}, pages
+  167--182. Springer, 2016.
+
+\bibitem{browne2010evolutionary}
+Cameron Browne and Frederic Maire.
+\newblock Evolutionary game design.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in
+  Games}, 2(1):1--16, 2010.
+
+\bibitem{demesentier2017aibased}
+Fernando de~Mesentier~Silva, Scott Lee, Julian Togelius, and Andy Nealen.
+\newblock Ai-based playtesting of contemporary board games.
+\newblock In {\em Proceedings of the 12th International Conference on the
+  Foundations of Digital Games}, page~13. ACM, 2017.
+
+\bibitem{font2013card}
+Jose~M Font, Tobias Mahlmann, Daniel Manrique, and Julian Togelius.
+\newblock A card game description language.
+\newblock In {\em European Conference on the Applications of Evolutionary
+  Computation}, pages 254--263. Springer, 2013.
+
+\bibitem{gaina2020design}
+Raluca~D Gaina, Martin Balla, Alexander Dockhorn, Raul Montoliu, and Diego
+  Perez-Liebana.
+\newblock Design and implementation of tag: A tabletop games framework.
+\newblock {\em arXiv preprint arXiv:2009.12065}, 2020.
+
+\bibitem{gaina2020tag}
+Raluca~D Gaina, Martin Balla, Alexander Dockhorn, Ra{\'u}l Montoliu, and Diego
+  Perez-Liebana.
+\newblock Tag: A tabletop games framework.
+\newblock In {\em Proceedings of the AIIDE workshop on Experimental AI in
+  Games}, 2020.
+
+\bibitem{hom2007automatic}
+Vincent Hom and Joe Marks.
+\newblock Automatic design of balanced board games.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence
+  and Interactive Digital Entertainment (AIIDE)}, pages 25--30, 2007.
+
+\bibitem{kowalski2019regular}
+Jakub Kowalski, Maksymilian Mika, Jakub Sutowicz, and Marek Szyku{\l}a.
+\newblock Regular boardgames.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~33, pages 1699--1706, 2019.
+
+\bibitem{lefler2004zillions}
+Mark Lefler and Jeff Mallett.
+\newblock Zrf language reference.
+\newblock 2004.
+
+\bibitem{love2006general}
+N.~Love, T.~Hinrichs, D.~Haley, E.~Schkufza, and M.~Genesereth.
+\newblock General game playing: Game description language specification.
+\newblock {\em Technical Report LG–2006–01, Stanford Logic Group}, 2006.
+
+\bibitem{osborn2013modular}
+Joseph~Carter Osborn, April Grow, and Michael Mateas.
+\newblock Modular computational critics for games.
+\newblock In {\em AIIDE}, 2013.
+
+\bibitem{piette2021ludii}
+Eric Piette, Cameron Browne, and Dennis~JNJ Soemers.
+\newblock Ludii game logic guide.
+\newblock 2021.
+
+\bibitem{piette2019ludii}
+Eric Piette, Dennis~JNJ Soemers, Matthew Stephenson, Chiara~F Sironi, Mark~HM
+  Winands, and Cameron Browne.
+\newblock Ludii--the ludemic general game system.
+\newblock {\em arXiv preprint arXiv:1905.05013}, 2019.
+
+\bibitem{thielscher2010general}
+Michael Thielscher.
+\newblock A general game description language for incomplete information games.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~24, 2010.
+
+\bibitem{thielscher2017gdl}
+Michael Thielscher.
+\newblock Gdl-iii: A description language for epistemic general game playing.
+\newblock In {\em The IJCAI-16 workshop on general game playing}, page~31,
+  2017.
+
+\end{thebibliography}

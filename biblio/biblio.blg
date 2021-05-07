@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: biblio.aux
+The style file: plain.bst
+Database file #1: biblio.bib.bib
+Warning--entry type for "browne2008thesis" isn't style-file defined
+--line 18 of file biblio.bib.bib
+Warning--can't use both volume and number fields in kowalski2019regular
+Warning--empty journal in lefler2004zillions
+Warning--empty journal in piette2021ludii
+Warning--can't use both volume and number fields in thielscher2010general
+You've used 17 entries,
+            2118 wiz_defined-function locations,
+            586 strings with 6860 characters,
+and the built_in function-call counts, 6100 in all, are:
+= -- 572
+> -- 322
+< -- 9
++ -- 130
+- -- 110
+* -- 388
+:= -- 993
+add.period$ -- 54
+call.type$ -- 17
+change.case$ -- 106
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 259
+empty$ -- 473
+format.name$ -- 110
+if$ -- 1304
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 16
+newline$ -- 87
+num.names$ -- 34
+pop$ -- 145
+preamble$ -- 1
+purify$ -- 89
+quote$ -- 0
+skip$ -- 186
+stack$ -- 0
+substring$ -- 244
+swap$ -- 80
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 68
+warning$ -- 4
+while$ -- 51
+width$ -- 19
+write$ -- 182
+(There were 5 warnings)

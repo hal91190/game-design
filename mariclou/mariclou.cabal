@@ -1,0 +1,87 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 4b669a87c32621ab023364c1d8e9d027e8b23e8a343895f1c7a566ab027dda38
+
+name:           mariclou
+version:        0.0.1.0
+description:    Mariclou
+homepage:       https://github.com/#readme
+bug-reports:    https://github.com//issues
+author:         Guillaume Bagan
+maintainer:     guillaume.bagan@liris.cnrs.fr
+license:        MIT
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    CHANGELOG.md
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/
+
+library
+  exposed-modules:
+      Ast
+      Eval
+      Main
+      Parser
+  other-modules:
+      Paths_mariclou
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , megaparsec
+    , mtl
+    , parser-combinators
+    , relude
+    , text
+  default-language: Haskell2010
+
+executable mariclou
+  main-is: Main.hs
+  other-modules:
+      Ast
+      Eval
+      Parser
+      Paths_mariclou
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock -threaded -rtsopts
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , mariclou
+    , megaparsec
+    , mtl
+    , parser-combinators
+    , relude
+    , text
+  default-language: Haskell2010
+
+test-suite mariclou-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_mariclou
+  hs-source-dirs:
+      test/src
+  default-extensions: NoImplicitPrelude LambdaCase TupleSections OverloadedStrings
+  ghc-options: -Wall -haddock -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , mariclou
+    , megaparsec
+    , mtl
+    , parser-combinators
+    , relude
+    , text
+  default-language: Haskell2010

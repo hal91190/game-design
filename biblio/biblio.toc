@@ -1,0 +1,13 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Glossaire}{1}{section.1}
+\contentsline {section}{\numberline {2}Notes}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Zillions of games (1998)}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Automatic design of balanced board games (2007) \cite {hom2007automatic}}{1}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Stanford GDL (2006, 2010, 2017) \cite {love2006general, thielscher2010general, thielscher2017gdl} }{2}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Card Game Description Language (2013) \cite {font2013card}}{2}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Modular Computational Critics for Games (2013) \cite {osborn2013modular} }{2}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6} Ludi et Ludii (2010,2016) \cite {browne2010evolutionary, browne2016class} }{2}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}AI-based playtesting of contemporary board games (2017) \cite {demesentier2017aibased}}{3}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.8}Exploring the hearthstone deck space (2018) \cite {bhatt2018exploring} }{3}{subsection.2.8}
+\contentsline {subsection}{\numberline {2.9}Regular Boardgames (2019) \cite {kowalski2019regular}}{3}{subsection.2.9}
+\contentsline {subsection}{\numberline {2.10}TAG: Tabletop Games Framework \cite {gaina2020tag}}{3}{subsection.2.10}

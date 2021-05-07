@@ -1,3 +1,9 @@
+*.o
+*.hi
+
+*.stack-work
+*dist-newstyle
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
