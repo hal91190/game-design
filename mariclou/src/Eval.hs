@@ -1,13 +1,4 @@
-{-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE LambdaCase   #-}
-{-# LANGUAGE TupleSections #-}
-
 module Eval where
-
-{-
->>> 3+3
--}
 
 import Relude
 import qualified Data.Map as Map

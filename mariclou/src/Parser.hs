@@ -1,8 +1,3 @@
-{-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE LambdaCase   #-}
-{-# LANGUAGE TupleSections #-}
-
 module Parser where
 
 import Relude hiding (many, some)

@@ -1,11 +1,3 @@
-{-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE LambdaCase   #-}
-{-# LANGUAGE TupleSections #-}
-
-{- |
->>> 2+2
--}
 module Main where
 import Relude
 import Data.Text.IO as IO
@@ -23,4 +15,3 @@ main = do
     print $ eval (Map.fromList env) expr
     --let p2 = eval Map.empty p
     --print expr
-    --print p2
