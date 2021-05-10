@@ -2,7 +2,7 @@ components: concat (repeat 3 \j -> repeat 3 \i -> {name = 'case', x = i, y=0})
 
 components: [{name = 'case', x = i, y = j} for i in (0..2) for j in (0..2)]
 
-components: [ {name <- 'case', x <- 0, y <- 0}  ]
+components: [{name <- 'case', x <- 0, y <- 0}]
 
 components: grille 8 8 "case"
 
@@ -38,13 +38,14 @@ component reserve: {}
 
 component player_black: {name = 'player', color = 'black'}
 component player_white: {name = 'player', color = 'white'}
-
+ 
 
 variable turn_counter: int
 turn_counter <- 0
 
 -- j'aime pas trop le || pour union mais ça peut aller
 relation position: {name='pion'} <-> {name='case'} || {reserve}  
+
 
 relation position: (pion, case + reserve)
 relation position: ({name=pion}, {name=case} + reserve)
@@ -109,7 +110,6 @@ transition t12: (j : name=='player')
 
 se décomposerait en
                    
-
 transition t1:
     when:
        
@@ -127,8 +127,8 @@ transition t3:
    when:
       t2.after
    effect:
-       set position(p,c)
-       phase <- 2
+      set position(p,c)
+      phase <- 2
 
 
 
@@ -142,4 +142,34 @@ repeat :
    turn J1
    turn J2
 
+liste :  nil, cons, head, tail
+ensemble :  in,  add, pop, fromlist, tolist,  size, emptyset, isEmpty
+entier: + - * / mod == <
 
+{ c    for c in case if c.x < 2 }
+-- on peut vérifier que tous les c in case ont l'attribut x à la compilation
+
+deplacementfou fou case =
+    let casefou = position fou  -- car position est une relation fonctionnelle
+    let x1, y1, x2, y2 = ....
+         between x1 y1 x2 y2 |> \x3 y3 -> emtpyCase x3 y3
+
+let ... in ...
+if ... then ... else ...
+
+
+
+
+if c.name == case then
+   calcul avec c.x
+else
+   ...
+
+case c.name of
+   case -> calcul avec c.x
+   _ -> ...
+
+if c has x && c has y then
+   calcul avec x et y
+else
+   
